@@ -1,8 +1,8 @@
-import test_weather
+import unittest
 from main import get_weather, format_output, get_city
 
 
-class TestWeatherApp(test_weather.TestCase):
+class TestWeatherApp(unittest.TestCase):
     def test_get_weather_valid_city(self):
         # Test with a valid city name
         city = "London"
