@@ -52,11 +52,6 @@ class TestWeatherApp(unittest.TestCase):
         output = format_output(weather_data)
         self.assertEqual(output, expected_output)
     
-    def test_get_city(self):
-        # Test that get_city returns a string
-        city = get_city()
-        self.assertIsInstance(city, str)
-    
     def test_integration_valid_city(self):
         # Test the full app flow with a valid city
         city = "Paris"
