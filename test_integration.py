@@ -2,7 +2,7 @@ import test_weather
 from main import get_weather, format_output, get_city
 
 
-class TestWeatherApp(unittest.TestCase):
+class TestWeatherApp(test_weather.TestCase):
     def test_get_weather_valid_city(self):
         # Test with a valid city name
         city = "London"
