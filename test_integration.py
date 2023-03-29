@@ -3,6 +3,40 @@ from main import get_weather, format_output, get_city
 
 
 class TestWeatherApp(unittest.TestCase):
+    
+    def test_integration_valid_city(self):
+        # Test the full app flow with a valid city
+        city = "Paris"
+        output = ""
+        try:
+            weather_data = get_weather(city)
+            output = format_output(weather_data)
+        except Exception as e:
+            self.fail(f"Error: {str(e)}")
+        self.assertIsInstance(weather_data, dict)
+        self.assertNotIn('error', weather_data)
+        self.assertIn('location', weather_data)
+        self.assertIn('description', weather_data)
+        self.assertIn('temperature', weather_data)
+        self.assertIn('humidity', weather_data)
+        self.assertIn('wind_speed', weather_data)
+        self.assertIn('sunrise_time', weather_data)
+        self.assertIn('sunset_time', weather_data)
+        self.assertIsInstance(output, str)
+    
+    def test_integration_invalid_city(self):
+        # Test the full app flow with an invalid city
+        city = "Invalid City"
+        output = ""
+        try:
+            weather_data = get_weather(city)
+            output = format_output(weather_data)
+        except Exception as e:
+            self.fail(f"Error: {str(e)}")
+        self.assertIsInstance(weather_data, dict)
+        self.assertIn('error', weather_data)
+        self.assertIsInstance(output, str)
+    
     def test_get_weather_valid_city(self):
         # Test with a valid city name
         city = "London"
@@ -51,39 +85,6 @@ class TestWeatherApp(unittest.TestCase):
         expected_output = "Error: Invalid city name"
         output = format_output(weather_data)
         self.assertEqual(output, expected_output)
-    
-    def test_integration_valid_city(self):
-        # Test the full app flow with a valid city
-        city = "Paris"
-        output = ""
-        try:
-            weather_data = get_weather(city)
-            output = format_output(weather_data)
-        except Exception as e:
-            self.fail(f"Error: {str(e)}")
-        self.assertIsInstance(weather_data, dict)
-        self.assertNotIn('error', weather_data)
-        self.assertIn('location', weather_data)
-        self.assertIn('description', weather_data)
-        self.assertIn('temperature', weather_data)
-        self.assertIn('humidity', weather_data)
-        self.assertIn('wind_speed', weather_data)
-        self.assertIn('sunrise_time', weather_data)
-        self.assertIn('sunset_time', weather_data)
-        self.assertIsInstance(output, str)
-    
-    def test_integration_invalid_city(self):
-        # Test the full app flow with an invalid city
-        city = "Invalid City"
-        output = ""
-        try:
-            weather_data = get_weather(city)
-            output = format_output(weather_data)
-        except Exception as e:
-            self.fail(f"Error: {str(e)}")
-        self.assertIsInstance(weather_data, dict)
-        self.assertIn('error', weather_data)
-        self.assertIsInstance(output, str)
 
 
 if __name__ == "__main__":
