@@ -3,7 +3,7 @@ from main import get_weather, format_output
 
 
 class TestWeatherApp(unittest.TestCase):
-        def test_get_weather_valid_city(self):
+    def test_get_weather_valid_city(self):
         # Test with a valid city name
         city = "London"
         weather_data = get_weather(city)
@@ -16,15 +16,14 @@ class TestWeatherApp(unittest.TestCase):
         self.assertIn('wind_speed', weather_data)
         self.assertIn('sunrise_time', weather_data)
         self.assertIn('sunset_time', weather_data)
-    
-def test_get_weather_invalid_city(self):
+
+    def test_get_weather_invalid_city(self):
         # Test with an invalid city name
         city = "Invalid City"
         weather_data = get_weather(city)
         self.assertIsInstance(weather_data, dict)
         self.assertIn('error', weather_data)
 
-        
     def test_format_output_valid_data(self):
         # Test with valid weather data
         weather_data = {
